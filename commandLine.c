@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "Fizzbuzz.h"
+#include "FizzBuzz.h"
 
 int main(int argc, char *argv [])
 {
@@ -13,7 +13,7 @@ int main(int argc, char *argv [])
     char *argument8 = argv[7];
     char *argument9 = argv[8];
     char *argument10 = argv[9];
-    checkNumbers(argv);
+    checkNumbers(argc);
     
 
     return 0;
