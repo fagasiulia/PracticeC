@@ -1,14 +1,12 @@
 #include <stdio.h>
-#include "FizzBuzz.h"
+#include <stdlib.h>
+#include "checkNumbres.h"
 
-int main(int argc, char *argv [])
+int main()
 {
-    printf("The command line has the following parameters:\n");
-    for(int i = 0; i < argc; i++){
-        printf("argv[%d] : %s \n", i , agrv[i]);
-    }
-    checkNumbers(argc);
-    
-
+    printf("How many numbers would you like to check?\n");
+    int numbers;
+    scanf("%d", &numbers);
+    checkNumbers(numbers);
     return 0;
 }
