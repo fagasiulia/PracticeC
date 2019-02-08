@@ -1,1 +1,1 @@
-void step_state(int n);
+extern void step_state(int n);
