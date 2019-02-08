@@ -2,7 +2,7 @@
 
 enum states{
     START,
-    FIZZBUZ
+    FIZZBUZ,
     FIZZ,
     BUZZ,
     EXIT
@@ -18,7 +18,7 @@ enum events{
 
 void step_state(int n){
     while(n >0){
-        
+
     switch(state){
     case START:
         switch(event){
@@ -61,5 +61,6 @@ void step_state(int n){
     }
     n--;
 }
-    
+
 }
+
