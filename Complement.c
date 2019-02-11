@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <string.h>
 
@@ -34,7 +35,7 @@ int main()
     lastTwo[1] = lastChars[2];
     
     //Convert hex to binary
-    for(i = 0;i <2 ; i++){
+    for(i = 0; i < 2; i++){
         switch(lastTwo[i]){
             case '0':
                 strcat(bin, "0000");
@@ -103,12 +104,12 @@ int main()
     }
     
     //Compute one's complement
-    for(i = 0; bin[i] != '\0'; i++){
-        if(bin[i] == 0){
-            bin[i] = 1;
+    for(i = 0; i < 8; i++){
+        if(bin[i] == '0'){
+            bin[i] = '1';
         }
         else{
-            bin[i] = 0;
+            bin[i] = '0';
         }
     }
     
@@ -119,6 +120,8 @@ int main()
     }
     
     //Convert binary to hex
+    binary = strtol(bin, NULL, 2);
+    printf("The one's complement is: %x", binary);
     
     return 0;
 }
