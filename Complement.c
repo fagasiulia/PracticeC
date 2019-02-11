@@ -34,7 +34,7 @@ int main()
     lastTwo[1] = lastChars[2];
     
     //Convert hex to binary
-    for(i = 0; lastTwo[i]!= '\0'; i++){
+    for(i = 0;i <2 ; i++){
         switch(lastTwo[i]){
             case '0':
                 strcat(bin, "0000");
