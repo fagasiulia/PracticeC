@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <string.h>
+#define LENGTH 38
 
 char *concat (char * s1, char *s2);
 int main()
 {
-    char str[39];
+    char str[]="137AF00A0A0D00000000000000000000000000";
     char hex [] = "00";
     char bin[9] = "";
     long int binary;
@@ -14,20 +15,15 @@ int main()
     int i;
     int temp;
     
-    
-    //Read a strings
-    printf("Enter a string:\n");
-    scanf("%s", str);
-    
     //Group 2 chars together and add them
-    for (i = 0; str[i] != 0; i+=2){
+    for (i = 0; i < LENGTH; i+=2){
         hex[0]= str[i];
         hex[1] = str[i + 1];
         sum += (int)strtol(hex, NULL, 16);
     }
     
     //Display the result
-    printf("%x\n", sum);
+    printf("The sum is: %x\n", sum);
     
     //Get the last 2 chars from the result
     sprintf(lastChars, "%x", sum);
