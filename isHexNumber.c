@@ -1,39 +1,42 @@
-#include <stdio.h>
 
+#include <stdio.h>
+#define TRUE 1
+#define FALSE 0
 
 int isDigit(char number);
-int isHexNumber (char letter);
+int getHowMuchToSubtractToConvertCharToNumber(char letter);
 
 int main()
 {
-    char a ='f';
-    int number = isHexNumber(a);
-    printf("%d", number);
-
+    char a ='8';
+    int number = getHowMuchToSubtractToConvertCharToNumber(a);
+    
+    if(getHowMuchToSubtractToConvertCharToNumber(a)){
+        printf("Trebuie sa scad din %d...%d ca sa imi dea %d", a, number, a-number);
+    }
     return 0;
 }
 
 int isDigit(char number){
     int n = number;
     if(n >= 48 && n <= 57){
-        return 1;
+        return TRUE;
     }
     else{
-        return 0;
+        return FALSE;
     }
 }
-int isHexNumber (char letter){
-    int y = letter;
-    if (isDigit(y) == 1){
-        return 48;
+int getHowMuchToSubtractToConvertCharToNumber(char letter){
+    if (isDigit(letter) == 1){
+        return '0';
     }
-    else if(y >= 65 && y <= 70){
-        return 65;
+    else if(letter >= 65 && letter <= 70){
+        return 'A';
     }
-    else if (y>= 97 && y <= 102){
-        return 97;
+    else if (letter >= 97 && letter <= 102){
+        return 'a';
     }
     else{
-        return 0;
+        return FALSE;
     }
 }
