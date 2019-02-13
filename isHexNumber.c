@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 
-bool isDigit(char number);
+int isDigit(char number);
 int isHexNumber (char letter);
 
 int main()
@@ -13,7 +13,7 @@ int main()
     return 0;
 }
 
-bool isDigit(char number){
+int isDigit(char number){
     int n = number;
     if(n >= 48 && n <= 57){
         return 1;
@@ -31,7 +31,7 @@ int isHexNumber (char letter){
         return 65;
     }
     else if (y>= 97 && y <= 102){
-        return 65;
+        return 97;
     }
     else{
         return 0;
