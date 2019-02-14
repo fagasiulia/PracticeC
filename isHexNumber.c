@@ -2,7 +2,7 @@
 #include <stdio.h>
 #define TRUE 1
 #define FALSE 0
-#define SUBSTRACT 10
+#define SUBTRACT 10
 
 
 int isDigit(char number);
