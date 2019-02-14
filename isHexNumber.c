@@ -6,8 +6,8 @@
 
 typedef unsigned int uint16;
 typedef char char8;
-int isDigit(char number);
-int getHowMuchToSubtractToConvertCharToNumber(char letter);
+uint16 isDigit(char8 number);
+uint16 getHowMuchToSubtractToConvertCharToNumber(char8 letter);
 
 int main()
 {
