@@ -2,7 +2,7 @@
 #define TRUE 1
 #define FALSE 0
 #define SUBTRACT 10
-#define HEXADECIMALVALUE
+#define HEXADECIMALVALUE 16
 
 typedef unsigned int uint16;
 typedef char char8;
