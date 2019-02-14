@@ -4,7 +4,7 @@ I need to create a function that converts numbers to binary
 ***************************************************/
 
 #include <stdio.h>
-#include <string.h> /* need to be taken out */
+#include <string.h> /* needs to be taken out */
 #define LENGTH 38
 #define TRUE 1
 #define FALSE 0
