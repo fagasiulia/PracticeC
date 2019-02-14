@@ -22,7 +22,7 @@ int main()
 //Check if the char is a digit
 int isDigit(char number){
     int n = number;
-    if(n >= 48 && n <= 57){  // 48-57 este intervalul pentru '0' - '9'
+    if(n >= '0' && n <= '57'){  // 48-57 este intervalul pentru '0' - '9'
         return TRUE;
     }
     else{
@@ -35,10 +35,10 @@ int getHowMuchToSubtractToConvertCharToNumber(char letter){
     if (isDigit(letter) == 1){
         return '0';
     }
-    else if(letter >= 65 && letter <= 70){ // 65-70 este intervalul pentru 'A' - 'F'
+    else if(letter >= 'A' && letter <= 'F'){ // 65-70 este intervalul pentru 'A' - 'F'
         return 'A' - SUBSTRACT;
     }
-    else if (letter >= 97 && letter <= 102){ // 97-102 este intervalul pentru 'a' - 'f'
+    else if (letter >= 'a' && letter <= 'f'){ // 97-102 este intervalul pentru 'a' - 'f'
         return 'a' - SUBSTRACT;
     }
     else{
