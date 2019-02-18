@@ -22,6 +22,7 @@ int main()
     char8 hex [] = "00";
     uint32 sum = 0;
     uint8 lastByte;
+    uint16 complementNo = 0;
     
     /*Group 2 chars together and add them */
     for (uint16 i = 0; i < LENGTH; i+=2){
@@ -40,6 +41,12 @@ int main()
     /*Convert hex to binary */
     convertHexToBinaty(lastByte);
     
+    /*Compute one's complement */
+    complementNo = ~lastByte; /* ~ (tilde) */
+    
+    printf("\n");
+    printf("\nOne's complement is: %x.\nIn binary that means: ", complementNo);
+    convertHexToBinaty(complementNo);
     
 }
 
@@ -91,6 +98,7 @@ void convertHexToBinaty(uint8 last){
         printBit(last,i);
     }
 }
+
 void printBit(uint8 last, uint8 position){
     uint8 mask;
     mask = 0x80 >> position;
