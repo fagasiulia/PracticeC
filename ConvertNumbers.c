@@ -24,7 +24,7 @@ int main()
     uint8 lastByte;
     uint16 complementNo = 0;
     
-    /*Group 2 chars together and add them */
+    /*Group the chars and add them */
     for (uint16 i = 0; i < LENGTH; i+=2){
         hex[0]= str[i];
         hex[1] = str[i + 1];
