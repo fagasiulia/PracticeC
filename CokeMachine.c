@@ -61,7 +61,6 @@ void step_state(int price){
             case EXIT_LOOP:
                 printf("Thank you!");
                 state = START; 
-                exit(1);
         }
     
     }    
