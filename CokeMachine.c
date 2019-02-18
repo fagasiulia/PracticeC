@@ -9,8 +9,8 @@ enum states {
 enum events{
     ASK_FOR_MONEY,
     CHECK_MONEY,
-    DISPENCE_COKE,
-    DISPENCE_CHANGE
+    DISPENSE_COKE,
+    DISPENSE_CHANGE
 }event;
 
 void step_state(int price){
@@ -35,7 +35,7 @@ while (n > money){
             
             case CHECK_MONEY:
             if(money >= n){
-                event = DISPENCE_COKE;
+                event = DISPENSE_COKE;
             }
             else {
                 printf("Not enough money");
@@ -43,17 +43,17 @@ while (n > money){
             }
             break;
             
-            case DISPENCE_COKE:
+            case DISPENSE_COKE:
             printf("Enjoy");
             if(money> n){
-                event = DISPENCE_CHANGE;
+                event = DISPENSE_CHANGE;
             }
             else{
                 state = EXIT_LOOP;
             }
             break;
     
-            case DISPENCE_CHANGE:
+            case DISPENSE_CHANGE:
             printf("Your change is %d", money -n);
             state = EXIT_LOOP;
             break;
