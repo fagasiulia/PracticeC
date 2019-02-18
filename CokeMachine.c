@@ -45,7 +45,7 @@ void step_state(int price){
                     break;
                     
                     case DISPENSE_CHANGE:
-                        printf("Your change is %d: \n", money - n);
+                        printf("Your change is: %d \n", money - n);
                         state = EXIT_LOOP;
                     break;
                 }
@@ -55,12 +55,14 @@ void step_state(int price){
                 printf("Insert money: \n");
                 scanf("%d", &moneyInserted);
                 money += moneyInserted;
-                event = CHECK_MONEY;
+                state = START;
             break;
             
             case EXIT_LOOP:
                 printf("Thank you!");
-                state = START; 
+                state = START;
+                exit(1);
+                
         }
     
     }    
