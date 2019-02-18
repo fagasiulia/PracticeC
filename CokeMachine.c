@@ -20,45 +20,49 @@ void step_state(int price){
     int state = START;
     int event = ASK_FOR_MONEY;
     
-while (n > money){
+while (n != 0){
         switch(state){
-        case START:
-        event = ASK_FOR_MONEY;
-        
-        switch(event){
-            case ASK_FOR_MONEY:
-            printf("Please insert money: \n");
-            scanf("%d", &moneyInserted);
-            money += moneyInserted;
-            event = CHECK_MONEY;
-            break;
+            case START:
+                 switch(event){
+                       case ASK_FOR_MONEY:
+                            printf("Please insert money: \n");
+                            scanf("%d", &moneyInserted);
+                            money += moneyInserted;
+                            event = CHECK_MONEY;
+                       break;
             
-            case CHECK_MONEY:
-            if(money >= n){
-                event = DISPENSE_COKE;
-            }
-            else {
-                printf("Not enough money");
-                event = ASK_FOR_MONEY;
-            }
-            break;
+                       case CHECK_MONEY:
+                            if(money >= n){
+                                printf("Enough money\n");
+                                event = DISPENSE_COKE;
+                            }          
+                            else {
+                                printf("Not enough money\n");
+                                event = ASK_FOR_MONEY;
+                            }
+                       break;
             
-            case DISPENSE_COKE:
-            printf("Enjoy");
-            if(money> n){
-                event = DISPENSE_CHANGE;
-            }
-            else{
-                state = EXIT_LOOP;
-            }
-            break;
+                       case DISPENSE_COKE:
+                            printf("Enjoy\n");
+                            if(money > n){
+                                 event = DISPENSE_CHANGE;
+                            }
+                            else{
+                                 state = EXIT_LOOP;
+                            }
+                       break;
     
-            case DISPENSE_CHANGE:
-            printf("Your change is %d", money -n);
-            state = EXIT_LOOP;
+                       case DISPENSE_CHANGE:
+                            printf("Your change is %d\n", money - n);
+                            state = EXIT_LOOP;
+                       break;
+                  }
             break;
-        }
-        case EXIT_LOOP:
-        printf("Thank you!");
-        exit(1);
+            
+            case EXIT_LOOP:
+                printf("Thank you!");
+                exit(1);
     }
+    
+}    
+}
