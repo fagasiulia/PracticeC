@@ -42,7 +42,8 @@ int main()
     convertHexToBinaty(lastByte);
     
     /*Compute one's complement */
-    complementNo = ~lastByte; /* ~ (tilde) */
+    complementNo = ~lastByte &0xFF; /* ~ (tilde) */
+    
     
     printf("\n");
     printf("\nOne's complement is: %x.\nIn binary that means: ", complementNo);
