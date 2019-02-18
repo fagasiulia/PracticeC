@@ -53,7 +53,7 @@ while (n > money){
             }
             break;
     
-            case DISPANCE_CHANGE:
+            case DISPENCE_CHANGE:
             printf("Your change is %d", money -n);
             state = EXIT_LOOP;
             break;
@@ -62,6 +62,3 @@ while (n > money){
         printf("Thank you!");
         exit(1);
     }
-    
-}    
-}
