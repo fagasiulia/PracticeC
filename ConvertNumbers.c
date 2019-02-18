@@ -35,7 +35,8 @@ int main()
     printf("The sum is: %x\n", sum);
     
     /*Get the last significant byte */
-    lastByte = sum &0xFF; /******* IMPORTANT ******/
+    lastByte = sum &0xFF; 
+    /******* IMPORTANT ****** 0xFF means 1111 1111 in binary and we use & to get the length of FF (8b) without changing the number*/
     printf("The last significat byte is: %x\n", lastByte);
     
     /*Convert hex to binary */
