@@ -2,67 +2,73 @@
 #include <stdlib.h>
 
 enum states {
-    START,
     ASK_FOR_MONEY,
+    DISPENCE_COKE,
+    DISPENCE_CHANGE,
     EXIT_LOOP
 }states;
 
 enum events{
     CHECK_MONEY,
     NOT_ENOUGH_MONEY,
-    DISPENSE_COKE,
-    DISPENSE_CHANGE
+    ENOUGH_MONEY
 }event;
 
-void step_state(int price){
-    int n = price;
-    int money = 0;
-    int moneyInserted = 0;
-    int state = START;
-    int event = CHECK_MONEY;
-    
-    while (n != 0){
+void step_state(int price, int quantity){
+	int n = price;
+	int y = quantity;
+	int money = 0;
+	int moneyInserted = 0;
+	int state=ASK_FOR_MONEY;
+	int event=CHECK_MONEY;
+
+    while(y > 0){
         switch(state){
-            case START:
-                switch(event){
-                    case CHECK_MONEY: 
-                       if(money < n){
-                           state = ASK_FOR_MONEY;
-                       }
-                       else{
-                           event = DISPENSE_COKE;
-                       }
-                    break;
-                    
-                    case DISPENSE_COKE:
-                        printf("Enjoy\n");
-                        if(money > n){
-                            event = DISPENSE_CHANGE;
-                        }
-                        else{
-                            state = EXIT_LOOP;
-                        }
-                    break;
-                    
-                    case DISPENSE_CHANGE:
-                        printf("Your change is: %d \n", money - n);
-                        state = EXIT_LOOP;
-                    break;
-                }
-                break;
-                
             case ASK_FOR_MONEY:
-                printf("Insert money: \n");
+                printf("Insert the money \n");
                 scanf("%d", &moneyInserted);
                 money += moneyInserted;
-                state = START;
+                
+                switch(event){
+                    case CHECK_MONEY:
+                         if(money < n){
+                             event = NOT_ENOUGH_MONEY;
+                         }
+                         else{
+                             event = ENOUGH_MONEY;
+                         }
+                    break;
+                    
+                    case NOT_ENOUGH_MONEY:
+                         printf("Not enough money\n");
+                    break;
+                    
+                    case ENOUGH_MONEY:
+                         if(money> price){
+                            state = DISPENCE_CHANGE; 
+                         }
+                         else{
+                             state = DISPENCE_COKE;
+                         }
+                    break;
+                }
+            break;
+            case DISPENCE_COKE:
+                printf("Here is your coke\n");
+                state = EXIT_LOOP;
+            break;
+            case DISPENCE_CHANGE:
+                printf("Your change is %d\n", money - price);
+                state = DISPENCE_COKE;
+            break;
+            case EXIT_LOOP:
+                printf("Enjoy!\n");
+                money = 0;
+                moneyInserted = 0;
+                y --;
+                state = ASK_FOR_MONEY;
             break;
             
-            case EXIT_LOOP:
-                printf("Thank you!");
-                exit(1);
-                
         }
-    
-    }    
+    }
 }
