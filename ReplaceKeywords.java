@@ -5,8 +5,8 @@ public class ReplaceKeywords
 {
 	public static void main(String[] args) {
 	    
-		private Scanner sourceFile;
-		private Scanner targetFile;
+		Scanner sourceFile;
+		Scanner targetFile;
 		boolean sourceFileExists = false;
 		boolean targetFileExists = false;
 		String oldCity = "Höhenkirchen";
