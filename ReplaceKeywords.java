@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class Main
+public class ReplaceKeywords
 {
 	public static void main(String[] args) {
 	    
