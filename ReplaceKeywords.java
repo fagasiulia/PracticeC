@@ -42,7 +42,7 @@ public class ReplaceKeywords
 		            String s1 = input.nextLine();
 		            String s2 = s1.replaceAll(oldCity, newCity);
 		            s2 = replaceAll (oldDate, newDate);
-		            output.orintln(s2);
+		            output.println(s2);
 		        }
 		    }		    
 		}
