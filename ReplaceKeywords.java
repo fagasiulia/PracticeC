@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.util.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -7,14 +6,17 @@ public class ReadingFiles
 {
 	public static void main(String[] args) {
 	    
-		Scanner sourceFile;
-		PrintWriter targetFile;
+		Scanner sourceFile = null;
+		PrintWriter targetFile = null;
 		boolean sourceFileExists = false;
 		boolean targetFileExists = false;
 		String oldCity = "Höhenkirchen";
-		String newCity = "Timisoare";
+		String newCity = "Timisoara";
 		String oldDate =  "2013-02-13";
-		String newDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance());
+		Date thisDate = new Date();
+		SimpleDateFormat dateFormat =  new SimpleDateFormat("yyyy-MM-dd");
+		//String newDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance());
+		//******* WHY IS NOT WORKING THIS WAY?
 		
 		//Check if the source file exists
 		try{
@@ -36,19 +38,20 @@ public class ReadingFiles
 		
 		//Create input and output files
 		if (sourceFileExists && targetFileExists){
-		  try(
-		    Scanner input = sourceFile;
-		    PrintWriter output = targetFile;){
+		  try{
 		        
-		        while(input.hasNext()){
-		            String s1 = input.nextLine();
+		        while(sourceFile.hasNext()){
+		            String s1 = sourceFile.nextLine();
 		            String s2 = s1.replaceAll(oldCity, newCity);
-		            s2 = s1.replaceAll (oldDate, newDate);
-		            output.println(s2);
+		            s2 = s2.replaceAll (oldDate, dateFormat.format(thisDate));
+		            targetFile.println(s2);
 		        }
 		    }catch(Exception e) {
 		    	System.out.println("Failed to complete");
-		    }		    
+		    }finally{
+		        sourceFile.close();
+		        targetFile.close();
+		    }			    
 		}
 	}
 }
