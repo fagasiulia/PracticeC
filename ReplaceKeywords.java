@@ -15,8 +15,6 @@ public class ReadingFiles
 		String oldDate =  "2013-02-13";
 		Date thisDate = new Date();
 		SimpleDateFormat dateFormat =  new SimpleDateFormat("yyyy-MM-dd");
-		//String newDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance());
-		//******* WHY IS NOT WORKING THIS WAY?
 		
 		//Check if the source file exists
 		try{
