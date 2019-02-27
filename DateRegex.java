@@ -1,23 +1,40 @@
 package practice;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.regex.*;
 import java.util.*;
 public class Main
 {
 	public static void main(String[] args) {
-		String testString = "This is a test 2012-11-27";
-		
 		//Patterns 
-		String pattern = "(\\s*)([0-9]{4}-[0-1][0-9]-[1-3][0-9])(\\s*)"; 
+		String datePattern = "(\\s*)([0-9]{4}-[0-1][0-9]-[1-3][0-9])(\\s*)"; 
 		String city = "Timisoara";
 		String cityPattern = "(\\s*)" + (city) + "(\\s*)";
 		
-		//Implement here
-		String test = replaceKeywords (testString, pattern, " Date");
-		System.out.println(test);
+		//Get the date
+		Date thisDate = new Date();
+		SimpleDateFormat dateFormat =  new SimpleDateFormat("yyyy-MM-dd");
+		String currentDate = dateFormat.format(thisDate);
+		
+		//Implement here	
+		try {
+			Scanner file = new Scanner(new File("C:\\Users\\fagas\\Desktop\\HTML\\sourceFile.txt")); 
+			PrintWriter newFile = new PrintWriter(new File("C:\\Users\\fagas\\Desktop\\HTML\\sourceFile.txt")); 
+			
+	        while(file.hasNext()){
+	            String s1 = file.nextLine();
+	            String s2 = replaceKeywords(s1,datePattern, currentDate);
+	            newFile.println(s2);
+	        }
+			
+		}catch (Exception e) {
+			System.out.println("Unable to execute");
+		}
+
 		
 	}
+	//Method for replacing keywords within the test using a pattern
 	public static String replaceKeywords(String stringYouWantToCheck, String pattern, String replacement){
 	    Pattern pw = Pattern.compile(pattern);
 	    Matcher mt = pw.matcher(stringYouWantToCheck);
@@ -65,3 +82,5 @@ public class Main
 	    return outputBuffer;
     }
 }
+
+
