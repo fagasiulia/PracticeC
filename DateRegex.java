@@ -9,8 +9,8 @@ public class Main
 	public static void main(String[] args) {
 		//Patterns 
 		String datePattern = "(\\s*)([0-9]{4}-[0-1][0-9]-[1-3][0-9])(\\s*)"; 
-		String city = "Timisoara";
-		String cityPattern = "(\\s*)" + (city) + "(\\s*)";
+		String cityKeyword = "Höhenkirchen";
+		String cityPattern = "(\\s*)" + (cityKeyword) + "(\\s*)";
 		
 		//Get the date
 		Date thisDate = new Date();
