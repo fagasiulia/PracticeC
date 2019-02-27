@@ -18,9 +18,8 @@ public class Main
 		String currentDate = dateFormat.format(thisDate);
 		
 		//Implement here	
-		try {
-			Scanner file = new Scanner(new File("C:\\Users\\fagas\\Desktop\\HTML\\sourceFile.txt")); 
-			PrintWriter newFile = new PrintWriter(new File("C:\\Users\\fagas\\Desktop\\HTML\\sourceFile.txt")); 
+		try(Scanner file = new Scanner(new File("C:\\Users\\fagas\\Desktop\\HTML\\sourceFile.txt")); 
+			PrintWriter newFile = new PrintWriter(new File("C:\\Users\\fagas\\Desktop\\HTML\\sourceFile.txt")); ) {
 			
 	        while(file.hasNext()){
 	            String s1 = file.nextLine();
@@ -84,3 +83,24 @@ public class Main
 }
 
 
+
+
+
+/** 
+//Update file
+public static PrintWriter updateFile(Scanner file, PrintWriter newFile, String stringYouWantToCheck, String pattern, String replacement) {
+	ArrayList<String> fileArray = readFile(file);
+	for(int i = 0; i  )
+	return newFile;
+}
+//Read file
+public static ArrayList<String> readFile(Scanner file){
+	ArrayList<String> arrayListToReturn = new ArrayList<String>();
+	while(file.hasNext()) {
+		String s = file.nextLine();
+		arrayListToReturn.add(s);
+	}
+	
+	return arrayListToReturn;
+}
+**/
