@@ -1,18 +1,20 @@
 package practice;
 
-
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.regex.*;
 import java.util.*;
 public class Main
 {
+    public static decimalNumber = 0;
+    
 	public static void main(String[] args) {
 		//Patterns 
 		String datePattern = "(\\s*)([0-9]{4}-[0-1][0-9]-[1-3][0-9])(\\s*)"; 
 		String cityKeyword = "Höhenkirchen";
 		String cityPattern = "(\\s*)" + (cityKeyword) + "(\\s*)";
 		String currentCity = "Timisoara";
+		String pressureChamberPattern = "(\\s*)(Pressure_Chamber_\\d*)(\\s*)";
 		
 		//Get the date
 		Date thisDate = new Date();
@@ -31,6 +33,9 @@ public class Main
 	            //Replace City
 	            String s2 = replaceKeywords(s2,cityPattern, currentCity);
 	            newFile.println(s2);
+	            //Replace Pressure Chamber Number
+	            String s2 = changeDecimalToHexInPressureChanger(s2,cityPattern);
+	            newFile.println(s2);	            
 	        }
 			
 		}catch (Exception e) {
@@ -99,7 +104,17 @@ public class Main
 	    }
 	    return outputBuffer;
     }
+    
+    //Change Pressure Chamber's Number
+    public static String changeDecimalToHexInPressureChanger (String stringYouWantToCheck, String pattern){
+        String updatePressureChamber = "Pressure_Chamber_" + (Integer.toHexString(decimal).toUpperCase());
+        String changeDecimalToHex = replaceKeywords(stringYouWantToCheck, pattern, updatePressureChamber);
+        
+        decimalNumber ++; 
+        return changeDecimalToHex;
+    }
 }
+
 
 
 /** 
