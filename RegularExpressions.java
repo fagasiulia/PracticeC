@@ -66,7 +66,7 @@ public class Main {
 	        int lastGroupLength = mt.group(3).length();
 	        
 	        //Create a StringBuffer to use for the space in front and after the keyword
-	        StringBuffer newString = null;
+	        StringBuffer newString = new StringBuffer("");
 	        int length = secondGroupLength - (replacement.length());
             if (length > 0){
                 newString = alignedText(length);
