@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.regex.*;
 import java.util.*;
 
-public class MainMain {
+public class Main {
 
 	public static int decimalNumber = 0;
 	public static void main(String[] args) {
@@ -94,7 +94,7 @@ public class MainMain {
 	
     //Change Pressure Chamber's Number
     public static String changeDecimalToHexInPressureChanger (String stringYouWantToCheck, String pattern){
-		String updatePressureChamber = "Pressure_Chamber_" + (Integer.toHexString(decimalNumber ).toUpperCase());
+	String updatePressureChamber = "Pressure_Chamber_" + (Integer.toHexString(decimalNumber ).toUpperCase());
         String changeDecimalToHex = replaceKeywords(stringYouWantToCheck, pattern, updatePressureChamber);
         
         decimalNumber++; 
