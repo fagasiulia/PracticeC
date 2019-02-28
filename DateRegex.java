@@ -6,8 +6,8 @@ import java.util.regex.*;
 import java.util.*;
 public class Main
 {
-    public static decimalNumber = 0;
-    
+	public static int decimalNumber = 0;
+	
 	public static void main(String[] args) {
 		//Patterns 
 		String datePattern = "(\\s*)([0-9]{4}-[0-1][0-9]-[1-3][0-9])(\\s*)"; 
@@ -22,8 +22,8 @@ public class Main
 		String currentDate = dateFormat.format(thisDate);
 		
 		//Implement here	
-		try(Scanner file = new Scanner(new File("C:\\Users\\uia55223\\Desktop\\AA\\a21.txt")); 
-			PrintWriter newFile = new PrintWriter(new File("C:\\Users\\uia55223\\Desktop\\AA\\temp.txt")); ) {
+		try(Scanner file = new Scanner(new File("C:\\Users\\fagas\\Desktop\\HTML\\sourceFile.txt")); 
+			PrintWriter newFile = new PrintWriter(new File("C:\\Users\\fagas\\Desktop\\HTML\\targetFile")); ) {
 			
 	        while(file.hasNext()){
 	            String s1 = file.nextLine();
@@ -31,28 +31,28 @@ public class Main
 	            String s2 = replaceKeywords(s1,datePattern, currentDate);
 	            newFile.println(s2);
 	            //Replace City
-	            String s2 = replaceKeywords(s2,cityPattern, currentCity);
+	            s2 = replaceKeywords(s2,cityPattern, currentCity);
 	            newFile.println(s2);
 	            //Replace Pressure Chamber Number
-	            String s2 = changeDecimalToHexInPressureChanger(s2,cityPattern);
+	            s2 = changeDecimalToHexInPressureChanger(s2,cityPattern);
 	            newFile.println(s2);	            
 	        }
 			
 		}catch (Exception e) {
-			System.out.println("Unable to execute");
+			e.printStackTrace();;
 		}
 
         //Rewrite the original file
-		try(Scanner file = new Scanner(new File("C:\\Users\\uia55223\\Desktop\\AA\\temp.txt")); 
-			PrintWriter newFile = new PrintWriter(new File("C:\\Users\\uia55223\\Desktop\\AA\\a21.txt")); ) {
+		try(Scanner file = new Scanner(new File("C:\\Users\\fagas\\Desktop\\HTML\\targetFile.txt")); 
+			PrintWriter newFile = new PrintWriter(new File("C:\\Users\\fagas\\Desktop\\HTML\\sourceFile.txt")); ) {
 			
 	        while(file.hasNext()){
 	            String s1 = file.nextLine();
-	            newFile.println(s2);
+	            newFile.println(s1);
 	        }
 			
 		}catch (Exception e) {
-			System.out.println("Unable to execute");
+			System.out.println("Unable to execute 2");
 		}		
 
 		
@@ -107,10 +107,10 @@ public class Main
     
     //Change Pressure Chamber's Number
     public static String changeDecimalToHexInPressureChanger (String stringYouWantToCheck, String pattern){
-        String updatePressureChamber = "Pressure_Chamber_" + (Integer.toHexString(decimal).toUpperCase());
+		String updatePressureChamber = "Pressure_Chamber_" + (Integer.toHexString(decimalNumber ).toUpperCase());
         String changeDecimalToHex = replaceKeywords(stringYouWantToCheck, pattern, updatePressureChamber);
         
-        decimalNumber ++; 
+        decimalNumber++; 
         return changeDecimalToHex;
     }
 }
