@@ -18,8 +18,8 @@ public class Main
 		String currentDate = dateFormat.format(thisDate);
 		
 		//Implement here	
-		try(Scanner file = new Scanner(new File("C:\\Users\\fagas\\Desktop\\HTML\\sourceFile.txt")); 
-			PrintWriter newFile = new PrintWriter(new File("C:\\Users\\fagas\\Desktop\\HTML\\sourceFile.txt")); ) {
+		try(Scanner file = new Scanner(new File("C:\\Users\\uia55223\\Desktop\\AA\\a21.txt")); 
+			PrintWriter newFile = new PrintWriter(new File("C:\\Users\\uia55223\\Desktop\\AA\\temp.txt")); ) {
 			
 	        while(file.hasNext()){
 	            String s1 = file.nextLine();
@@ -30,6 +30,18 @@ public class Main
 		}catch (Exception e) {
 			System.out.println("Unable to execute");
 		}
+
+		try(Scanner file = new Scanner(new File("C:\\Users\\uia55223\\Desktop\\AA\\temp.txt")); 
+			PrintWriter newFile = new PrintWriter(new File("C:\\Users\\uia55223\\Desktop\\AA\\a21.txt")); ) {
+			
+	        while(file.hasNext()){
+	            String s1 = file.nextLine();
+	            newFile.println(s2);
+	        }
+			
+		}catch (Exception e) {
+			System.out.println("Unable to execute");
+		}		
 
 		
 	}
@@ -81,7 +93,6 @@ public class Main
 	    return outputBuffer;
     }
 }
-
 
 
 
