@@ -1,5 +1,6 @@
 package practice;
 
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.regex.*;
@@ -11,6 +12,7 @@ public class Main
 		String datePattern = "(\\s*)([0-9]{4}-[0-1][0-9]-[1-3][0-9])(\\s*)"; 
 		String cityKeyword = "Höhenkirchen";
 		String cityPattern = "(\\s*)" + (cityKeyword) + "(\\s*)";
+		String currentCity = "Timisoara";
 		
 		//Get the date
 		Date thisDate = new Date();
@@ -23,7 +25,11 @@ public class Main
 			
 	        while(file.hasNext()){
 	            String s1 = file.nextLine();
+	            //Replace Date
 	            String s2 = replaceKeywords(s1,datePattern, currentDate);
+	            newFile.println(s2);
+	            //Replace City
+	            String s2 = replaceKeywords(s2,cityPattern, currentCity);
 	            newFile.println(s2);
 	        }
 			
@@ -31,6 +37,7 @@ public class Main
 			System.out.println("Unable to execute");
 		}
 
+        //Rewrite the original file
 		try(Scanner file = new Scanner(new File("C:\\Users\\uia55223\\Desktop\\AA\\temp.txt")); 
 			PrintWriter newFile = new PrintWriter(new File("C:\\Users\\uia55223\\Desktop\\AA\\a21.txt")); ) {
 			
@@ -93,8 +100,6 @@ public class Main
 	    return outputBuffer;
     }
 }
-
-
 
 
 /** 
