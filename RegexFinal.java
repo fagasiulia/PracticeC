@@ -13,6 +13,7 @@ public class Main {
 		String cityPattern = "(\\s*)(Höhenkirchen)(\\s*)";
 		String currentCity = "Timisoara";
 		String pressureChamberPattern = "(\\s*)(\\.*)(Preasure_chamber_)(\\d*)(\\.*)(\\s*)";
+        String ecuPattern ="(\\s*)(ECU_ADDRESS )(0x\\.)";
 		
 		//Get the date
 		Date thisDate = new Date();
@@ -27,6 +28,7 @@ public class Main {
 	            String s2 = replaceKeywords(s1,datePattern, currentDate);
 	            s2 = replaceKeywords(s2,cityPattern, currentCity);	 
 	            s2 = replaceKeywords(s2,pressureChamberPattern);
+	            s2 = ecuAddressComplement(s2,ecuPattern);
 				readFile.add(s2);
 			}
 		}catch(Exception e) {
@@ -120,5 +122,24 @@ public class Main {
 	    }
 	    return word;
 	}	
+	
+	//ECU_ADDRESS complement method
+    public static String ecuAddressComplement(String stringYouWantToCheck, String pattern){
+	    Pattern pw = Pattern.compile(pattern);
+	    Matcher mt = pw.matcher(stringYouWantToCheck);
+	    
+	    String complement = stringYouWantToCheck;
+	    //If a match if found do this...
+	    if(mt.find()){
+	        String string = mt.group(2);
+	        String stringNumber = mt.group(1-3);
+	        int number = Integer.parseInt(stringNumber);
+	        int comp = ~number;
+	        complement = string +" "+ Integer.toHexString(comp);
+	    } 
+	    return complement;
+    }
+
+    
 
 }
