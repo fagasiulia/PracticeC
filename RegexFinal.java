@@ -97,7 +97,7 @@ public class Main {
 	    Pattern pw = Pattern.compile(pattern);
 	    Matcher mt = pw.matcher(stringYouWantToCheck);
 	    String string = stringYouWantToCheck;
-	    //If a match if found do this... 
+	    //If a match is found do this... 
 	    if(mt.find()){
 	        String word = mt.group(3);
 	        String number = mt.group(4);
@@ -129,13 +129,13 @@ public class Main {
 	    Matcher mt = pw.matcher(stringYouWantToCheck);
 	    
 	    String complement = stringYouWantToCheck;
-	    //If a match if found do this...
+	    //If a match is found do this...
 	    if(mt.find()){
 	        String string = mt.group(2);
 	        String stringNumber = mt.group(1-3);
 	        int number = Integer.parseInt(stringNumber);
 	        int comp = ~number;
-	        complement = string +" "+ Integer.toHexString(comp);
+	        complement = string + Integer.toHexString(comp);
 	    } 
 	    return complement;
     }
