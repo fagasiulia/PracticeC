@@ -13,7 +13,7 @@ public class Main {
 		String cityPattern = "(\\s*)(Höhenkirchen)(\\s*)";
 		String currentCity = "Timisoara";
 		String pressureChamberPattern = "(\\s*)(\\.*)(Preasure_chamber_)(\\d*)(\\.*)(\\s*)";
-        String ecuPattern ="(\\s*)(ECU_ADDRESS )(0xE0\\d*\\w*\\d*)";
+        String ecuPattern ="(\\s*)(ECU_ADDRESS 0x)(E0\\d*\\w*\\d*)";
 		
 		//Get the date
 		Date thisDate = new Date();
@@ -124,19 +124,25 @@ public class Main {
 	}	
 	
 	//ECU_ADDRESS complement method
-    public static String ecuAddressComplement(String stringYouWantToCheck, String pattern){
+  public static String ecuAddressComplement(String stringYouWantToCheck, String pattern){
 	    Pattern pw = Pattern.compile(pattern);
 	    Matcher mt = pw.matcher(stringYouWantToCheck);
 	    
 	    String complement = stringYouWantToCheck;
 	    //If a match is found do this...
 	    if(mt.find()){
+		//Get ECU_ADDRESS 
 	        String string = mt.group(2);
+		//Get the number
 	        String stringNumber = mt.group(3);
-	        int number = Integer.parseInt(stringNumber);
-	        int comp = ~number;
-	        complement = string + Integer.toHexString(comp);
+	        long number = Long.parseLong(stringNumber,16);
+		//Complement
+	        long comp = ~number; //I tried: comp = ~number & 0xFF to keep the last sign byte
+                //String to be returned
+	        complement = mt.group(1) + string + (Long.toHexString(comp)).toUpperCase();
 	    } 
 	    return complement;
     }
+    
+
 }
