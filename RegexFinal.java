@@ -13,7 +13,7 @@ public class Main {
 		String cityPattern = "(\\s*)(Höhenkirchen)(\\s*)";
 		String currentCity = "Timisoara";
 		String pressureChamberPattern = "(\\s*)(\\.*)(Preasure_chamber_)(\\d*)(\\.*)(\\s*)";
-        String ecuPattern ="(\\s*)(ECU_ADDRESS )(0x\\.)";
+        String ecuPattern ="(\\s*)(ECU_ADDRESS )(0xE0\\d*\\w*\\d*)";
 		
 		//Get the date
 		Date thisDate = new Date();
@@ -132,14 +132,11 @@ public class Main {
 	    //If a match is found do this...
 	    if(mt.find()){
 	        String string = mt.group(2);
-	        String stringNumber = mt.group(1-3);
+	        String stringNumber = mt.group(3);
 	        int number = Integer.parseInt(stringNumber);
 	        int comp = ~number;
 	        complement = string + Integer.toHexString(comp);
 	    } 
 	    return complement;
     }
-
-    
-
 }
