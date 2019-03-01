@@ -137,7 +137,7 @@ public class Main {
 	        String stringNumber = mt.group(3);
 	        long number = Long.parseLong(stringNumber,16);
 		//Complement
-	        long comp = ~number; //I tried: comp = ~number & 0xFF to keep the last sign byte
+	        long comp = ~number;
                 //String to be returned
 	        complement = mt.group(1) + string + (Long.toHexString(comp)).toUpperCase();
 	    } 
