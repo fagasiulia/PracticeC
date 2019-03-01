@@ -69,18 +69,10 @@ public class Main {
 	        int length = secondGroupLength - (replacement.length());
 		
 		//If the length > 0 this means that the replacement word is shorter so you need to complete its length with spaces
-                if (length > 0){
-                   newString = alignedText(length + lastGroupLength);
-                }
 		//If the length < 0 this means that the replacemnt word is longer and you need to subtract the difference from the space
 		//after the keyword
-                else if (length < 0){
-                   newString = alignedText (lastGroupLength + length);
-                }
 		//If the length of the words is equal keep the same space
-                else{
-                   newString = alignedText(lastGroupLength);
-                }
+                newString = alignedText(length + lastGroupLength);
                 replacement = alignedText(firstGroupLength) + replacement + newString;
                 stringYouWantToCheck = stringYouWantToCheck.replaceAll(pattern, replacement);
 	        }
@@ -128,8 +120,5 @@ public class Main {
 	    }
 	    return word;
 	}	
-	
-
-    
 
 }
