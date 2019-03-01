@@ -43,19 +43,25 @@ public class Main
 	        
 	        //Create a StringBuffer to use for the space in front and after the keyword
 	        StringBuffer newString = new StringBuffer("");
+		//Check the difference between the replacement word and the keyword    
 	        int length = secondGroupLength - (replacement.length());
-            if (length > 0){
-                newString = alignedText(length + lastGroupLength);
-            }
-            else if (length < 0){
-                newString = alignedText (lastGroupLength + length);
-            }
-            else{
-                newString = alignedText(lastGroupLength);
-            }
-            replacement = alignedText(firstGroupLength) + replacement + newString;
-            stringYouWantToCheck = stringYouWantToCheck.replaceAll(pattern, replacement);
-	    }
+		
+		//If the length > 0 this means that the replacement word is shorter so you need to complete its length with spaces
+                if (length > 0){
+                   newString = alignedText(length + lastGroupLength);
+                }
+		//If the length < 0 this means that the replacemnt word is longer and you need to subtract the difference from the space
+		//after the keyword
+                else if (length < 0){
+                   newString = alignedText (lastGroupLength + length);
+                }
+		//If the length of the words is equal keep the same space
+                else{
+                   newString = alignedText(lastGroupLength);
+                }
+                replacement = alignedText(firstGroupLength) + replacement + newString;
+                stringYouWantToCheck = stringYouWantToCheck.replaceAll(pattern, replacement);
+	        }
 	     
 	    //Return the new string
 	    return stringYouWantToCheck;
