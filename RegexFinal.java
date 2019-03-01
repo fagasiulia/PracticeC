@@ -12,7 +12,7 @@ public class Main {
 		String cityKeyword = "Höhenkirchen";
 		String cityPattern = "(\\s*)(Höhenkirchen)(\\s*)";
 		String currentCity = "Timisoara";
-		String pressureChamberPattern = "(\\s*)(Pressure_Chamber_\\d*)(\\s*)";
+		String pressureChamberPattern = "(\\s*)(\\.*)(Preasure_chamber_)(\\d*)(\\.*)(\\s*)";
 		
 		//Get the date
 		Date thisDate = new Date();
@@ -26,7 +26,7 @@ public class Main {
 				String s1 = sourceFile.nextLine();
 	            String s2 = replaceKeywords(s1,datePattern, currentDate);
 	            s2 = replaceKeywords(s2,cityPattern, currentCity);	 
-	            s2 = changeDecimalToHexInPressureChanger(s2,cityPattern);
+	            s2 = replaceKeywords(s2,pressureChamberPattern);
 				readFile.add(s2);
 			}
 		}catch(Exception e) {
@@ -99,13 +99,37 @@ public class Main {
     }
 	
     //Change Pressure Chamber's Number
-    public static String changeDecimalToHexInPressureChanger (String stringYouWantToCheck, String pattern){
-	String updatePressureChamber = "Pressure_Chamber_" + (Integer.toHexString(decimalNumber ).toUpperCase());
-        String changeDecimalToHex = replaceKeywords(stringYouWantToCheck, pattern, updatePressureChamber);
-        
-        decimalNumber++; 
-        return changeDecimalToHex;
-    }
+	public static String replaceKeywords(String stringYouWantToCheck, String pattern){
+	    Pattern pw = Pattern.compile(pattern);
+	    Matcher mt = pw.matcher(stringYouWantToCheck);
+	    String string = stringYouWantToCheck;
+	    //If a match if found do this... 
+	    if(mt.find()){
+	        String word = mt.group(3);
+	        String number = mt.group(4);
+            String replacement = pressureChamberNumberReplacement(word, number);
+            string = stringYouWantToCheck.replaceAll(pattern, replacement);
+	   }
+	     
+	    //Return the new string
+	    return string;
+	}
+	
+	public static String pressureChamberNumberReplacement(String word, String number){
+	    int repLength = number.length();
+	    int decimalNumber = Integer.parseInt(number) - 1;
+	    String hexNumber = Integer.toHexString(decimalNumber).toUpperCase();
+	    int hexNumberLength = hexNumber.length();
+	    if(repLength > hexNumberLength){
+	        word = word + hexNumber;
+	    }
+	    else{
+	        word = word + hexNumber;
+	    }
+	    return word;
+	}	
+	
+
     
 
 }
