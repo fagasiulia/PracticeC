@@ -131,18 +131,14 @@ public class Main {
 	    String complement = stringYouWantToCheck;
 	    //If a match is found do this...
 	    if(mt.find()){
-		//Get ECU_ADDRESS 
 	        String string = mt.group(2);
-		//Get the number
 	        String stringNumber = mt.group(3);
 	        long number = Long.parseLong(stringNumber,16);
-		//Complement
 	        long comp = ~number;
-                //String to be returned
-	        complement = mt.group(1) + string + (Long.toHexString(comp)).toUpperCase();
+	        String hexNumber = (Long.toHexString(comp)).toUpperCase();
+	        hexNumber = hexNumber.substring(7);
+	        complement = mt.group(1) + string + hexNumber;
 	    } 
 	    return complement;
     }
     
-
-}
