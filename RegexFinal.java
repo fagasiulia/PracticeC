@@ -12,7 +12,7 @@ public class Main {
 		String cityKeyword = "Höhenkirchen";
 		String cityPattern = "(\\s*)(Höhenkirchen)(\\s*)";
 		String currentCity = "Timisoara";
-		String pressureChamberPattern = "(\\s*)(\\.*)(Preasure_chamber_)(\\d*)(\\.*)(\\s*)";
+		String pressureChamberPattern = "(\\s*)(\\.*)(Preasure_chamber_)(\\d+)(\\.*)(\\s*)";
         String ecuPattern ="(\\s*)(ECU_ADDRESS 0x)(E0\\d*\\w*\\d*)";
 		
 		//Get the date
@@ -26,8 +26,12 @@ public class Main {
 			while(sourceFile.hasNext()) {
 				String s1 = sourceFile.nextLine();
 	            String s2 = replaceKeywords(s1,datePattern, currentDate);
-	            s2 = replaceKeywords(s2,cityPattern, currentCity);	 
-	            s2 = replaceKeywords(s2,pressureChamberPattern);
+	            s2 = replaceKeywords(s2,cityPattern, currentCity);
+	            try{
+	                s2 = replaceKeywords(s2,pressureChamberPattern);	                
+	            }catch (NumberFormatException e){
+	                e.printStackTrace();
+	            }
 	            s2 = ecuAddressComplement(s2,ecuPattern);
 				readFile.add(s2);
 			}
@@ -142,3 +146,5 @@ public class Main {
 	    return complement;
     }
     
+
+}
