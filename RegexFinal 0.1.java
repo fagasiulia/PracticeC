@@ -165,9 +165,13 @@ public class Main
 		//Check for the following pattern
 		String checkPattern = "(\\s*)(Preasure_chamber_FFFFFFFF)(\\s*)";
 		
+		/*We create two ArrayLists to check if the Pressure Chamber Number has been changed or not
+		If the pressure chamber number was changed we don't need to write it again in the file
+		*/
 		ArrayList<String> readFile = new ArrayList<String>();
 		ArrayList<String> checkFile = new ArrayList<String>();		
 		
+		//The following code will update all the information and save it the the checkFile
 		try(Scanner sourceFile = new Scanner(new File("a21.txt"));){
 			while(sourceFile.hasNext()) {
 				String s1 = sourceFile.nextLine();
@@ -186,6 +190,7 @@ public class Main
 			e.printStackTrace();
 		}
 		
+		//The following code will update everything except the Pressure Chamber Number and save it in the readFile
 		try(Scanner sourceFile = new Scanner(new File("a21.txt"));){
 		    while(sourceFile.hasNext()){
 		        String s1 = sourceFile.nextLine();
@@ -200,6 +205,8 @@ public class Main
 		}
 		
 		try(PrintWriter finaleFile = new PrintWriter(new File("a21.txt"));){
+		    //If checkFile contains the pattern it means we don't have to change the pressure chamber number again
+		    //so we write the file from the readFile which has only the other info updated
 		    if(checkFile.contains(checkPattern)){
 		        System.out.println("Se copiaza din readFile");
 		        for(int i = 0; i < readFile.size(); i++) {
@@ -207,6 +214,7 @@ public class Main
 				    finaleFile.println(s);
 		        }		        
 		    }
+		    //If the checkFile doesn't contain the pattern we can update the file from the checkFile
 		    else{
 		        System.out.println("Se copiaza din checkFile");
 		        for(int i = 0; i < checkFile.size(); i++) {
