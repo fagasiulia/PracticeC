@@ -50,7 +50,7 @@ public class Main
  	    }
     }
     public class ReplaceDate extends ReplaceKeywords{
-        private final String datePattern = "(\\s*)([0-9]{4}-[0-1][0-9]-[1-3][0-9])(\\s*)";
+        private final String DATE_PATTERN = "(\\s*)([0-9]{4}-[0-1][0-9]-[1-3][0-9])(\\s*)";
         private String currentDate;
         
         public ReplaceDate(){
@@ -59,7 +59,7 @@ public class Main
 		    this.currentDate = dateFormat.format(thisDate);
         }
         public String getDatePattern(){
-            return datePattern;
+            return DATE_PATTERN;
         }
         public String getCurrentDate(){
             return currentDate;
@@ -67,7 +67,7 @@ public class Main
         
     }
     public class ReplaceLocation extends ReplaceKeywords{
-        private final String cityPattern = "(\\s*)(Höhenkirchen)(\\s*)";
+        private final String CITY_PATTERN = "(\\s*)(Höhenkirchen)(\\s*)";
 		private String currentCity;
 		
 		public ReplaceLocation (String currentCity){
@@ -77,25 +77,26 @@ public class Main
 		    this.currentCity = newCity;
 		}
 		public String getCityPattern(){
-		    return cityPattern;
+		    return CITY_PATTERN;
 		}
 		public String getCurrentCity(){
 		    return currentCity;
 		}
     }
     public class ReplacePressureChamberNumber{
-        private final String pressureChamberPattern = "(\\s*)(\\.*)(Preasure_chamber_)(\\d+)(\\.*)(\\s*)";
+        private final String PRESSURE_CHAMBER_PATTERN = "(\\s*)(\\.*)(Preasure_chamber_)(\\d+)(\\.*)(\\s*)";
         
         public ReplacePressureChamberNumber(){} 
         
         public String getPressureChamberPattern(){
-            return pressureChamberPattern;
+            return PRESSURE_CHAMBER_PATTERN;
         }
         
         public String replaceKeywords(String stringYouWantToCheck, String pattern){
 	    Pattern pw = Pattern.compile(pattern);
 	    Matcher mt = pw.matcher(stringYouWantToCheck);
 	    String string = stringYouWantToCheck;
+	    
 	    //If a match is found do this... 
 	    if(mt.find()){
 	        String word = mt.group(3);
@@ -126,12 +127,12 @@ public class Main
 	    
     }
     public class EcuAddressComplement{
-        private final String ecuPattern ="(\\s*)(ECU_ADDRESS 0x)(E0\\d*\\w*\\d*)";
+        private final String ECU_PATTERN ="(\\s*)(ECU_ADDRESS 0x)(E0\\d*\\w*\\d*)";
         
         public EcuAddressComplement(){}
         
         public String getEcuPattern(){
-            return ecuPattern;
+            return ECU_PATTERN;
         }
         
         public String ecuAddressComplement(String stringYouWantToCheck, String pattern){
@@ -163,6 +164,7 @@ public class Main
 		Main.EcuAddressComplement ecuAddress = obj.new EcuAddressComplement();
 		
 		ArrayList<String> readFile = new ArrayList<String>();
+		ArrayList<String> checkFile = new ArrayList<String>();		
 		
 		try(Scanner sourceFile = new Scanner(new File("a21.txt"));){
 			while(sourceFile.hasNext()) {
@@ -171,7 +173,7 @@ public class Main
 	            s2 = replaceLocation.replaceKeywords(s2,replaceLocation.getCityPattern(), replaceLocation.getCurrentCity());
 	            s2 = ecuAddress.ecuAddressComplement(s2,ecuAddress.getEcuPattern());
 	            
-	            if(!readFile.contains("Preasure_chamber_A")){
+	            if(!checkFile.contains("Preasure_chamber_A")){
 	                try{
 	                    s2 = replacePressureChamberNr.replaceKeywords(s2,replacePressureChamberNr.getPressureChamberPattern());	                
 	                }catch (NumberFormatException e){
@@ -188,6 +190,7 @@ public class Main
 			for(int i = 0; i < readFile.size(); i++) {
 				String s = readFile.get(i);
 				finaleFile.println(s);
+				checkFile.add(readFile.get(i));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
