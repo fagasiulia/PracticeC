@@ -163,7 +163,7 @@ public class Main
 		Main.EcuAddressComplement ecuAddress = obj.new EcuAddressComplement();
 		
 		//Check for the following pattern
-		String checkPattern = "(\\s*)(Preasure_chamber_0)(\\s*)";
+		String checkPattern = "(\\s*)(\"Preasure_chamber_0\")(\\s*)(\\n)";
 		
 		boolean patternExists = false;
 		
